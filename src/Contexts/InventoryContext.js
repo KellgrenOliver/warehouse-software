@@ -7,7 +7,7 @@ const useInventoryContext = () => {
 };
 
 const InventoryContextProvider = (props) => {
-  const [inventory, setInventory] = useState([]);
+  const [data, setData] = useState([]);
   const getData = () => {
     fetch("inventory.json", {
       headers: {
@@ -19,7 +19,7 @@ const InventoryContextProvider = (props) => {
         return response.json();
       })
       .then(function (myJson) {
-        setInventory(myJson);
+        setData(myJson);
       });
   };
   useEffect(() => {
@@ -27,7 +27,7 @@ const InventoryContextProvider = (props) => {
   }, []);
 
   const values = {
-    inventory,
+    data,
   };
 
   return (

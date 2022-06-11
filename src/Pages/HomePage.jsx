@@ -1,14 +1,22 @@
 import React from "react";
-import Inventory from "../Components/Inventory";
+import styled from "@emotion/styled";
+// import Inventory from "../Components/Inventory";
 import Products from "../Components/Products";
-function HomePage() {
+
+const Container = styled.div({
+  margin: "2rem",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+});
+
+const HomePage = () => {
   return (
-    <div className="App">
-      <Inventory />
+    <Container>
+      {/* <Inventory /> */}
       <Products />
-      <h1>testar</h1>
-    </div>
+    </Container>
   );
-}
+};
 
 export default HomePage;

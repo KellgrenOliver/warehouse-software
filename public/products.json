@@ -2,16 +2,22 @@
   "products": [
     {
       "name": "Dining Chair",
+      "product_id": "1",
+      "price": "300",
+      "image": "https://www.ikea.com/se/sv/images/products/bergmund-stol-ekmoenstrad-orrsta-ljusgra__0926606_pe789389_s5.jpg?f=s",
       "contain_articles": [
         {
+          "name": "Leg",
           "art_id": "1",
           "amount_of": "4"
         },
         {
+          "name": "Screw",
           "art_id": "2",
           "amount_of": "8"
         },
         {
+          "name": "Seat",
           "art_id": "3",
           "amount_of": "1"
         }
@@ -19,16 +25,22 @@
     },
     {
       "name": "Dinning Table",
+      "product_id": "2",
+      "image": "https://www.ikea.com/au/en/images/products/skogsta-dining-table-acacia__0546603_pe656255_s5.jpg?f=s",
+      "price": "1500",
       "contain_articles": [
         {
+          "name": "Leg",
           "art_id": "1",
           "amount_of": "4"
         },
         {
+          "name": "Screw",
           "art_id": "2",
           "amount_of": "8"
         },
         {
+          "name": "Table top",
           "art_id": "4",
           "amount_of": "1"
         }

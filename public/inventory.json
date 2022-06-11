@@ -2,22 +2,22 @@
   "inventory": [
     {
       "art_id": "1",
-      "name": "leg",
+      "name": "Leg",
       "stock": "12"
     },
     {
       "art_id": "2",
-      "name": "screw",
+      "name": "Screw",
       "stock": "17"
     },
     {
       "art_id": "3",
-      "name": "seat",
+      "name": "Seat",
       "stock": "2"
     },
     {
       "art_id": "4",
-      "name": "table top",
+      "name": "Table top",
       "stock": "1"
     }
   ]

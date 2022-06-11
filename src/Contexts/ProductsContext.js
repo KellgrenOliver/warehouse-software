@@ -7,7 +7,7 @@ const useProductsContext = () => {
 };
 
 const ProductsContextProvider = (props) => {
-  const [products, setProducts] = useState([]);
+  const [data, setData] = useState([]);
   const getData = () => {
     fetch("products.json", {
       headers: {
@@ -19,7 +19,7 @@ const ProductsContextProvider = (props) => {
         return response.json();
       })
       .then(function (myJson) {
-        setProducts(myJson);
+        setData(myJson);
       });
   };
   useEffect(() => {
@@ -27,7 +27,7 @@ const ProductsContextProvider = (props) => {
   }, []);
 
   const values = {
-    products,
+    data,
   };
 
   return (
