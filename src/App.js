@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import InventoryContextProvider from "./Contexts/InventoryContext";
+import ProductsContextProvider from "./Contexts/ProductsContext";
+import Navbar from "./Components/Navbar";
+import HomePage from "./Pages/HomePage";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app">
+      <Router>
+        <InventoryContextProvider>
+          <ProductsContextProvider>
+            <Navbar />
+            <Routes>
+              <Route exact path="/" element={<HomePage />} />
+              <Route
+                exact
+                path="*"
+                element={<h1>SIDAN DU SÖKER FINNS INTE</h1>}
+              />
+            </Routes>
+          </ProductsContextProvider>
+        </InventoryContextProvider>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;
