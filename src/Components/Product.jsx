@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useProductsContext } from "../Contexts/ProductsContext";
+import { useInventoryContext } from "../Contexts/InventoryContext";
 
 const Container = styled.div({
   display: "flex",
@@ -21,16 +23,43 @@ const Img = styled.img({
   borderRadius: "5px",
 });
 
-const Product = ({ product }) => {
-  const navigate = useNavigate();
+const Product = () => {
+  const { data: productsData } = useProductsContext();
+  const { data: inventoryDatadata } = useInventoryContext();
+
+  const params = useParams();
+
+  const product = productsData?.products?.find(
+    (product) => product?.product_id === params.id
+  );
+
+  let [inventory, setInventory] = useState([]);
+
+  inventory = inventoryDatadata?.inventory;
+
+  console.log(inventory);
+
+  const updateInventory = () => {};
   return (
     <>
-      <Container onClick={() => navigate(`/${product?.product_id}`)}>
+      <Container>
         <Img src={product?.image} alt="product" />
-        <div>{product?.name}</div>
-        <div>{product?.price}:-</div>
+        <h1>{product?.name}</h1>
+        <h3>{product?.price}:-</h3>
+        <button onClick={updateInventory()}>REMOVE</button>
+        <br />
+        <div>Contain Articles</div>
+        {product?.contain_articles?.map((article) => (
+          <div key={article.art_id}>
+            <ul>
+              <li>
+                {article?.name} x {article?.amount_of}
+              </li>
+            </ul>
+            <span></span>
+          </div>
+        ))}
       </Container>
-      {/* <button onClick={() => }>BUY</button> */}
     </>
   );
 };
