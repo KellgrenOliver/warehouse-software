@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
+import { useInventoryContext } from "../Contexts/InventoryContext";
 import { useNavigate } from "react-router-dom";
 import Header from "../Components/Header";
-
 const CardWrapper = styled.div({
   display: "flex",
   justifyContent: "center",
@@ -33,6 +33,7 @@ const Card = styled.div(({ imageUrl }) => {
 
 const HomePage = () => {
   const navigate = useNavigate();
+
   return (
     <>
       <Header title={"Warehouse Software"} />
