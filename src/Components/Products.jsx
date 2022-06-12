@@ -3,14 +3,6 @@ import styled from "@emotion/styled";
 import { useProductsContext } from "../Contexts/ProductsContext";
 import { useNavigate } from "react-router-dom";
 
-const Container = styled.div({
-  width: "70%",
-  display: "flex",
-  flexWrap: "wrap",
-  justifyContent: "center",
-  alignItems: "center",
-});
-
 const ProductWrapper = styled.div({
   display: "flex",
   justifyContent: "center",
@@ -30,24 +22,33 @@ const Img = styled.img({
   borderRadius: "5px",
 });
 
+const InfoWrapper = styled.div({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  width: "100%",
+  margin: "1rem auto",
+});
+
 const Products = () => {
   const { data: productsData } = useProductsContext();
   const navigate = useNavigate();
 
   return (
-    <Container>
+    <>
       {productsData?.products?.map((product) => (
         <ProductWrapper
-          product={product}
           key={product.product_id}
-          onClick={() => navigate(`/${product?.product_id}`)}
+          onClick={() => navigate(`/products/${product?.product_id}`)}
         >
           <Img src={product?.image} alt="product" />
-          <div>{product?.name}</div>
-          <div>{product?.price}:-</div>
+          <InfoWrapper>
+            <div>{product?.name}</div>
+            <b>{product?.price}:-</b>
+          </InfoWrapper>
         </ProductWrapper>
       ))}
-    </Container>
+    </>
   );
 };
 
