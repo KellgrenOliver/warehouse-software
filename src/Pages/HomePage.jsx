@@ -30,6 +30,7 @@ const Card = styled.div({
   cursor: "pointer",
   transition: "transform 0.3s",
   borderRadius: "5px",
+  fontWeight: 200,
   "&:hover": {
     transform: "scale(1.1)",
   },
@@ -54,8 +55,8 @@ const HomePage = () => {
     <>
       <Header title={"Warehouse Software"} />
       <CardWrapper>
-        <Card onClick={() => navigate("/inventory")}>INVENTORY</Card>
-        <Card onClick={() => navigate("/products")}>PRODUCTS</Card>
+        <Card onClick={() => navigate("/inventory")}>Inventory</Card>
+        <Card onClick={() => navigate("/products")}>Products</Card>
       </CardWrapper>
     </>
   );

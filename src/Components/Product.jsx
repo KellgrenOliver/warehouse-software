@@ -38,6 +38,19 @@ const Img = styled.img({
     width: "400px",
     height: "400px",
   },
+  "@media screen and (min-width: 768px)": {
+    width: "300px",
+    height: "300px",
+  },
+  "@media screen and (min-width: 1024px)": {
+    width: "400px",
+    height: "400px",
+  },
+});
+
+const Header = styled.h1({
+  fontWeight: 200,
+  fontSize: "3rem",
 });
 
 const Ul = styled.ul({
@@ -98,9 +111,8 @@ const Product = () => {
         <Container>
           <Img src={product.image} alt="product" />
           <InfoWrapper>
-            <h1>{product.name}</h1>
+            <Header>{product.name}</Header>
             <h3>{product.price}:-</h3>
-            <b>Contain Articles</b>
             {product.contain_articles.map((article) => (
               <div key={article.art_id}>
                 <div>
