@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { useParams } from "react-router-dom";
 import { useProductsContext } from "../Contexts/ProductsContext";
@@ -73,6 +73,7 @@ const Button = styled.button({
 
 const Product = () => {
   const { data: productsData } = useProductsContext();
+  const [isRemovable, setIsRemovable] = useState(true);
 
   let { data: inventoryData, setData: setInventoryData } =
     useInventoryContext();
@@ -82,6 +83,17 @@ const Product = () => {
   const product = productsData?.find(
     (product) => product?.product_id === params.id
   );
+
+  useEffect(() => {
+    product?.contain_articles?.map((article) => {
+      const itemStock = inventoryData?.find(
+        (item) => item.art_id === article.art_id
+      ).stock;
+      if (parseInt(itemStock) < parseInt(article.amount_of)) {
+        setIsRemovable(false);
+      }
+    });
+  }, [inventoryData, product]);
 
   const updateInventory = (product) => {
     let newStockArr = [];
@@ -132,7 +144,9 @@ const Product = () => {
                 </div>
               </div>
             ))}
-            <Button onClick={() => updateInventory(product)}>REMOVE</Button>
+            {isRemovable && (
+              <Button onClick={() => updateInventory(product)}>REMOVE</Button>
+            )}
           </InfoWrapper>
           <Toaster position="top-right" />
         </Container>
