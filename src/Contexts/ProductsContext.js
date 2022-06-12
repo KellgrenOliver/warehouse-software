@@ -9,18 +9,24 @@ const useProductsContext = () => {
 const ProductsContextProvider = (props) => {
   const [data, setData] = useState([]);
   const getData = () => {
-    fetch("products.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then(function (response) {
-        return response.json();
+    const savedData = localStorage.getItem("Products");
+    if (savedData) {
+      setData(JSON.parse(savedData));
+    } else {
+      fetch("products.json", {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
       })
-      .then(function (myJson) {
-        setData(myJson?.products);
-      });
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (myJson) {
+          setData(myJson?.products);
+          localStorage.setItem("Products", JSON.stringify(myJson?.products));
+        });
+    }
   };
   useEffect(() => {
     getData();
@@ -28,7 +34,6 @@ const ProductsContextProvider = (props) => {
 
   const values = {
     data,
-    setData,
   };
 
   return (

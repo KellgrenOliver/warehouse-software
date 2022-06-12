@@ -75,8 +75,7 @@ const Product = () => {
   const { data: productsData } = useProductsContext();
   const [isRemovable, setIsRemovable] = useState(true);
 
-  let { data: inventoryData, setData: setInventoryData } =
-    useInventoryContext();
+  let { data: inventoryData, setInventoryData } = useInventoryContext();
 
   const params = useParams();
 
@@ -88,7 +87,7 @@ const Product = () => {
     product?.contain_articles?.map((article) => {
       const itemStock = inventoryData?.find(
         (item) => item.art_id === article.art_id
-      ).stock;
+      )?.stock;
       if (parseInt(itemStock) < parseInt(article.amount_of)) {
         setIsRemovable(false);
       }
@@ -119,7 +118,7 @@ const Product = () => {
 
   return (
     <>
-      {product && (
+      {product ? (
         <Container>
           <Img src={product.image} alt="product" />
           <InfoWrapper>
@@ -150,6 +149,8 @@ const Product = () => {
           </InfoWrapper>
           <Toaster position="top-right" />
         </Container>
+      ) : (
+        "Loading"
       )}
     </>
   );
