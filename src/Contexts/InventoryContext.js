@@ -24,6 +24,7 @@ const InventoryContextProvider = (props) => {
         })
         .then(function (myJson) {
           setData(myJson?.inventory);
+          localStorage.setItem("Inventory", JSON.stringify(myJson?.inventory));
         });
     }
   };

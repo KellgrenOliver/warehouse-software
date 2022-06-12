@@ -20,7 +20,7 @@ const CardWrapper = styled.div({
 });
 
 const Card = styled.div({
-  backgroundColor: "#40445c",
+  backgroundColor: "#373c4a",
   width: "85%",
   height: "150px",
   display: "flex",

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { useParams } from "react-router-dom";
 import { useProductsContext } from "../Contexts/ProductsContext";
-import toast, { Toaster } from "react-hot-toast";
 import { useInventoryContext } from "../Contexts/InventoryContext";
+import toast, { Toaster } from "react-hot-toast";
+import { RotateLoader } from "react-spinners";
 
 const Container = styled.div({
   display: "flex",
@@ -12,8 +13,11 @@ const Container = styled.div({
   flexDirection: "column",
   margin: "3rem auto 1rem auto",
   gap: "2rem",
+  padding: "2rem",
+  backgroundColor: "#373c4a",
+  borderRadius: "2rem",
   "@media screen and (min-width: 768px)": {
-    margin: "10rem auto 2rem auto",
+    margin: "8rem auto 2rem auto",
     flexDirection: "row",
   },
 });
@@ -31,13 +35,9 @@ const InfoWrapper = styled.div({
 });
 
 const Img = styled.img({
-  width: "300px",
-  height: "300px",
+  width: "250px",
+  height: "250px",
   borderRadius: "5px",
-  "@media screen and (min-width: 600px)": {
-    width: "400px",
-    height: "400px",
-  },
   "@media screen and (min-width: 768px)": {
     width: "300px",
     height: "300px",
@@ -66,9 +66,7 @@ const Button = styled.button({
   padding: "0.5rem 1.5rem",
   cursor: "pointer",
   marginTop: "1rem",
-  "&:hover": {
-    backgroundColor: "#9c2c31",
-  },
+  borderRadius: "5px",
 });
 
 const Product = () => {
@@ -144,13 +142,13 @@ const Product = () => {
               </div>
             ))}
             {isRemovable && (
-              <Button onClick={() => updateInventory(product)}>REMOVE</Button>
+              <Button onClick={() => updateInventory(product)}>Remove</Button>
             )}
           </InfoWrapper>
           <Toaster position="top-right" />
         </Container>
       ) : (
-        "Loading"
+        <RotateLoader color={"#888"} size={50} />
       )}
     </>
   );

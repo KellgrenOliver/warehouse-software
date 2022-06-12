@@ -11,6 +11,9 @@ const ProductWrapper = styled.div({
   margin: "1rem",
   cursor: "pointer",
   transition: "transform 0.3s",
+  backgroundColor: "#373c4a",
+  padding: "2rem 2rem 1rem 2rem",
+  borderRadius: "1rem",
   "&:hover": {
     transform: "scale(1.1)",
   },
@@ -20,12 +23,12 @@ const ProductWrapper = styled.div({
 });
 
 const Img = styled.img({
-  width: "300px",
-  height: "300px",
+  width: "250px",
+  height: "250px",
   borderRadius: "5px",
   "@media screen and (min-width: 600px)": {
-    width: "250px",
-    height: "250px",
+    width: "200px",
+    height: "200px",
   },
 });
 

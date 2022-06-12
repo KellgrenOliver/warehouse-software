@@ -10,17 +10,17 @@ const ArticleWrapper = styled.div({
   flexDirection: "column",
   margin: "1.5rem auto",
   padding: "1rem",
-  border: "1px solid white",
+  backgroundColor: "#373c4a",
   width: "250px",
-  borderRadius: "5px",
+  borderRadius: "10px",
 });
 
 const Products = () => {
-  const { data: inventorysData } = useInventoryContext();
+  const { data: inventoryData } = useInventoryContext();
 
   return (
     <>
-      {inventorysData?.map((article) => (
+      {inventoryData?.map((article) => (
         <ArticleWrapper key={article.art_id}>
           <Article article={article} />
         </ArticleWrapper>

@@ -10,9 +10,6 @@ const H1 = styled.div({
   "@media screen and (min-width: 600px)": {
     fontSize: "3rem",
   },
-  "@media screen and (min-width: 768px)": {
-    marginTop: "20vh",
-  },
 });
 
 const Header = (props) => {
