@@ -34,9 +34,11 @@ const Products = () => {
   const { data: productsData } = useProductsContext();
   const navigate = useNavigate();
 
+  console.log(productsData);
+
   return (
     <>
-      {productsData?.products?.map((product) => (
+      {productsData?.map((product) => (
         <ProductWrapper
           key={product.product_id}
           onClick={() => navigate(`/products/${product?.product_id}`)}

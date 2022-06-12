@@ -19,7 +19,7 @@ const ProductsContextProvider = (props) => {
         return response.json();
       })
       .then(function (myJson) {
-        setData(myJson);
+        setData(myJson?.products);
       });
   };
   useEffect(() => {
@@ -28,6 +28,7 @@ const ProductsContextProvider = (props) => {
 
   const values = {
     data,
+    setData,
   };
 
   return (

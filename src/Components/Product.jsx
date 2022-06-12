@@ -48,99 +48,40 @@ const Button = styled.button({
 const Product = () => {
   const { data: productsData } = useProductsContext();
 
-  let { data: inventoryDatadata } = useInventoryContext();
-
-  let [inventory, setInventory] = useState([]);
-
-  useEffect(() => {
-    setInventory(inventoryDatadata?.inventory);
-  }, [inventoryDatadata?.inventory]);
+  let { data: inventoryData, setData: setInventoryData } =
+    useInventoryContext();
 
   const params = useParams();
 
-  const product = productsData?.products?.find(
+  const product = productsData?.find(
     (product) => product?.product_id === params.id
   );
 
-  let article1 = inventory?.[0];
-  let article2 = inventory?.[1];
-  let article3 = inventory?.[2];
-  let article4 = inventory?.[3];
+  const updateInventory = (product) => {
+    let newStockArr = [];
+    inventoryData?.map((item) => {
+      return product?.contain_articles?.find((article) => {
+        if (item.art_id === article.art_id) {
+          newStockArr.push({
+            art_id: item.art_id,
+            name: item.name,
+            stock: JSON.stringify(item.stock - article.amount_of),
+          });
+        }
+      });
+    });
+    const updatedInventory = inventoryData?.map(
+      (obj) => newStockArr?.find((o) => o.art_id === obj.art_id) || obj
+    );
 
-  let containArticles = product?.contain_articles?.map((article) => article);
+    setInventoryData(updatedInventory);
 
-  const containArticle1 = containArticles?.find(
-    (article) => article.art_id === "1"
-  );
-  const containArticle2 = containArticles?.find(
-    (article) => article.art_id === "2"
-  );
-  const containArticle3 = containArticles?.find(
-    (article) => article.art_id === "3"
-  );
-  const containArticle4 = containArticles?.find(
-    (article) => article.art_id === "4"
-  );
-
-  let updatedArticle1Stock = (
-    Number(article1?.stock) - Number(containArticle1?.amount_of)
-  ).toString();
-
-  let updatedArticle2Stock = (
-    Number(article2?.stock) - Number(containArticle2?.amount_of)
-  ).toString();
-
-  let updatedArticle3Stock = (
-    Number(article3?.stock) - Number(containArticle3?.amount_of)
-  ).toString();
-
-  let updatedArticle4Stock = (
-    Number(article4?.stock) - Number(containArticle4?.amount_of)
-  ).toString();
-
-  const updateInventory = () => {
-    if (containArticles?.map((article) => article.art_id)?.includes("1")) {
-      localStorage.setItem(
-        "Article 1",
-        JSON.stringify({
-          art_id: "1",
-          name: "Leg",
-          stock: updatedArticle1Stock,
-        })
-      );
-    }
-    if (containArticles?.map((article) => article.art_id)?.includes("2")) {
-      localStorage.setItem(
-        "Article 2",
-        JSON.stringify({
-          art_id: "2",
-          name: "Screw",
-          stock: updatedArticle2Stock,
-        })
-      );
-    }
-    if (containArticles?.map((article) => article.art_id)?.includes("3")) {
-      localStorage.setItem(
-        "Article 3",
-        JSON.stringify({
-          art_id: "3",
-          name: "Seat",
-          stock: updatedArticle3Stock,
-        })
-      );
-    }
-    if (containArticles?.map((article) => article.art_id)?.includes("4")) {
-      localStorage.setItem(
-        "Article 4",
-        JSON.stringify({
-          art_id: "4",
-          name: "Table top",
-          stock: updatedArticle4Stock,
-        })
-      );
-    }
     toast.success("Inventory has been updated!");
   };
+
+  useEffect(() => {
+    console.log({ inventoryData });
+  }, [inventoryData]);
 
   return (
     <>
@@ -157,13 +98,21 @@ const Product = () => {
                 <div>
                   <Ul>
                     <li>
-                      {article.name} x {article.amount_of}
+                      {article?.name} x {article?.amount_of}
+                      <div>
+                        Stock:
+                        {
+                          inventoryData?.find(
+                            (item) => item.art_id === article.art_id
+                          )?.stock
+                        }
+                      </div>
                     </li>
                   </Ul>
                 </div>
               </div>
             ))}
-            <Button onClick={updateInventory}>REMOVE</Button>
+            <Button onClick={() => updateInventory(product)}>REMOVE</Button>
           </InfoWrapper>
           <Toaster position="top-right" />
         </Container>

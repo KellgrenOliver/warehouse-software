@@ -16,7 +16,7 @@ const Products = () => {
 
   return (
     <>
-      {inventorysData?.inventory?.map((article) => (
+      {inventorysData?.map((article) => (
         <ArticleWrapper key={article.art_id}>
           <Article article={article} />
         </ArticleWrapper>

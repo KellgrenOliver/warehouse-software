@@ -19,7 +19,7 @@ const InventoryContextProvider = (props) => {
         return response.json();
       })
       .then(function (myJson) {
-        setData(myJson);
+        setData(myJson?.inventory);
       });
   };
   useEffect(() => {
@@ -28,6 +28,7 @@ const InventoryContextProvider = (props) => {
 
   const values = {
     data,
+    setData,
   };
 
   return (
