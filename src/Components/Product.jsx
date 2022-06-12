@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import { useParams } from "react-router-dom";
 import { useProductsContext } from "../Contexts/ProductsContext";
@@ -9,27 +9,40 @@ const Container = styled.div({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  flexDirection: "row",
-  margin: "10rem auto 2rem auto",
+  flexDirection: "column",
+  margin: "3rem auto 1rem auto",
   gap: "2rem",
+  "@media screen and (min-width: 768px)": {
+    margin: "10rem auto 2rem auto",
+    flexDirection: "row",
+  },
 });
 
 const InfoWrapper = styled.div({
   display: "flex",
   justifyContent: "flex-start",
   flexDirection: "column",
-  padding: "1rem",
+  padding: 0,
+  width: "100%",
+  "@media screen and (min-width: 600px)": {
+    padding: "1rem",
+    width: "fit-content",
+  },
 });
 
 const Img = styled.img({
-  width: "350px",
-  height: "350px",
+  width: "300px",
+  height: "300px",
   borderRadius: "5px",
+  "@media screen and (min-width: 600px)": {
+    width: "400px",
+    height: "400px",
+  },
 });
 
 const Ul = styled.ul({
-  paddingInlineStart: "1rem",
-  margin: "0.2rem",
+  paddingInlineStart: "0.5rem",
+  margin: "0.5rem",
 });
 
 const Button = styled.button({
@@ -79,10 +92,6 @@ const Product = () => {
     toast.success("Inventory has been updated!");
   };
 
-  useEffect(() => {
-    console.log({ inventoryData });
-  }, [inventoryData]);
-
   return (
     <>
       {product && (
@@ -91,16 +100,15 @@ const Product = () => {
           <InfoWrapper>
             <h1>{product.name}</h1>
             <h3>{product.price}:-</h3>
-            <br />
             <b>Contain Articles</b>
             {product.contain_articles.map((article) => (
               <div key={article.art_id}>
                 <div>
                   <Ul>
                     <li>
-                      {article?.name} x {article?.amount_of}
+                      {article?.name} x{article?.amount_of}
                       <div>
-                        Stock:
+                        Stock:{" "}
                         {
                           inventoryData?.find(
                             (item) => item.art_id === article.art_id

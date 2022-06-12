@@ -10,7 +10,20 @@ const ProductsWrapper = styled.div({
   alignItems: "center",
   flexWrap: "wrap",
   width: "70%",
-  margin: "3rem auto",
+  margin: "1rem auto",
+  "@media screen and (min-width: 600px)": {
+    margin: "3rem auto",
+    width: "95%",
+  },
+  "@media screen and (min-width: 768px)": {
+    width: "90%",
+  },
+  "@media screen and (min-width: 1024px)": {
+    width: "80%",
+  },
+  "@media screen and (min-width: 1224px)": {
+    width: "70%",
+  },
 });
 
 const ProductsPage = () => {

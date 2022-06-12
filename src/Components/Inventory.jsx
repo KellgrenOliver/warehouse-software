@@ -8,7 +8,11 @@ const ArticleWrapper = styled.div({
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
-  margin: "1.5rem",
+  margin: "1.5rem auto",
+  padding: "1rem",
+  border: "1px solid white",
+  width: "250px",
+  borderRadius: "5px",
 });
 
 const Products = () => {

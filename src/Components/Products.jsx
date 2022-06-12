@@ -8,18 +8,25 @@ const ProductWrapper = styled.div({
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
-  margin: "1.5rem",
+  margin: "1rem",
   cursor: "pointer",
   transition: "transform 0.3s",
   "&:hover": {
     transform: "scale(1.1)",
   },
+  "@media screen and (min-width: 600px)": {
+    margin: "1.5rem",
+  },
 });
 
 const Img = styled.img({
-  width: "250px",
-  height: "250px",
+  width: "300px",
+  height: "300px",
   borderRadius: "5px",
+  "@media screen and (min-width: 600px)": {
+    width: "250px",
+    height: "250px",
+  },
 });
 
 const InfoWrapper = styled.div({
@@ -33,8 +40,6 @@ const InfoWrapper = styled.div({
 const Products = () => {
   const { data: productsData } = useProductsContext();
   const navigate = useNavigate();
-
-  console.log(productsData);
 
   return (
     <>
