@@ -106,7 +106,8 @@ const Product = () => {
       });
     });
     const updatedInventory = inventoryData?.map(
-      (obj) => newStockArr?.find((o) => o.art_id === obj.art_id) || obj
+      (article) =>
+        newStockArr?.find((item) => item.art_id === article.art_id) || article
     );
 
     setInventoryData(updatedInventory);
