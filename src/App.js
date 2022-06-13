@@ -6,6 +6,7 @@ import HomePage from "./Pages/HomePage";
 import ProductsPage from "./Pages/ProductsPage";
 import InventoryPage from "./Pages/InventoryPage";
 import ProductPage from "./Pages/ProductPage";
+import NotFoundPage from "./Pages/NotFoundPage";
 
 const App = () => {
   return (
@@ -18,11 +19,7 @@ const App = () => {
               <Route exact path="/products" element={<ProductsPage />} />
               <Route exact path="/inventory" element={<InventoryPage />} />
               <Route exact path="/products/:id" element={<ProductPage />} />
-              <Route
-                exact
-                path="*"
-                element={<h1>The page you are looking for does not exist.</h1>}
-              />
+              <Route exact path="*" element={<NotFoundPage />} />
             </Routes>
           </ProductsContextProvider>
         </InventoryContextProvider>
