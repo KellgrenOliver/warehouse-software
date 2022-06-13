@@ -10,15 +10,19 @@ const ProductWrapper = styled.div({
   flexDirection: "column",
   margin: "1rem",
   cursor: "pointer",
-  transition: "transform 0.3s",
   backgroundColor: "#373c4a",
   padding: "2rem 2rem 1rem 2rem",
   borderRadius: "1rem",
   "&:hover": {
-    transform: "scale(1.1)",
+    "@media screen and (min-width: 600px)": {
+      transform: "scale(1.1)",
+    },
   },
   "@media screen and (min-width: 600px)": {
     margin: "1.5rem",
+  },
+  "@media screen and (min-width: 1024px)": {
+    transition: "transform 0.3s",
   },
 });
 

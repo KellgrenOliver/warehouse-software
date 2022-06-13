@@ -28,11 +28,12 @@ const Card = styled.div({
   alignItems: "center",
   fontSize: "2.5rem",
   cursor: "pointer",
-  transition: "transform 0.3s",
   borderRadius: "5px",
   fontWeight: 200,
   "&:hover": {
-    transform: "scale(1.1)",
+    "@media screen and (min-width: 1024px)": {
+      transform: "scale(1.1)",
+    },
   },
   "@media screen and (min-width: 600px)": {
     fontSize: "3rem",
@@ -44,6 +45,7 @@ const Card = styled.div({
     width: "70%",
   },
   "@media screen and (min-width: 1024px)": {
+    transition: "transform 0.3s",
     width: "35%",
   },
 });
